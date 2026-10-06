@@ -75,6 +75,21 @@ def leaf_of(row: dict) -> str:
     return FOCAL_LEAF if label == "Shewanella_vesiculosa_E1" else label
 
 
+def display_name(row: dict) -> str:
+    """Leaf label in the form used on the published tree: "S. frigidimarina",
+    "F. balearica B", "U. sp002341165". The genus is abbreviated to its initial and
+    any suffix carried by the leaf name (a GTDB A/B variant) is kept. The two
+    S. vesiculosa entries also carry their strain designation, as on the figure."""
+    leaf = leaf_of(row)
+    if leaf == FOCAL_LEAF:
+        return FOCAL_NAME
+    genus, _, rest = leaf.partition("_")
+    name = f"{genus[0]}. {rest.replace('_', ' ')}" if rest else leaf
+    if "vesiculosa" in leaf and row.get("Strain designation"):
+        name = f"{name} {row['Strain designation']}"
+    return name
+
+
 def genus_of(leaf: str) -> str:
     return "Shewanella" if leaf == FOCAL_LEAF else leaf.split("_", 1)[0]
 
@@ -103,8 +118,7 @@ def main() -> None:
 
     write("iTOL_04_labels.txt",
           ["LABELS", "SEPARATOR TAB"],
-          [f"{leaf_of(r)}\t{FOCAL_NAME if leaf_of(r) == FOCAL_LEAF else r['Species']}"
-           for r in rows])
+          [f"{leaf_of(r)}\t{display_name(r)}" for r in rows])
 
     for fname, label, column, colour in (
             ("iTOL_05_completeness.txt", "CheckM completeness (%)", "Completeness (%)", "#1C8458"),

@@ -41,15 +41,15 @@ for og in "${OGS[@]}"; do
     # -alrt 1000  SH-aLRT, 1000 replicates
     # -T 4        4 threads
     # --seed 42   fixed seed (weakly supported nodes otherwise vary between runs)
-    iqtree
-        -s "${og}_prot.aln"
-        -m TEST
-        -B 1000
-        -alrt 1000
-        --prefix "${og}_tree"
-        -T 4
-        --seed 42
-        --redo
+    iqtree \
+        -s "${og}_prot.aln" \
+        -m TEST \
+        -B 1000 \
+        -alrt 1000 \
+        --prefix "${og}_tree" \
+        -T 4 \
+        --seed 42 \
+        --redo \
         > iqtree.log 2>&1
 
     # Outputs: {og}_tree.treefile (Newick with support values), {og}_tree.iqtree (report)

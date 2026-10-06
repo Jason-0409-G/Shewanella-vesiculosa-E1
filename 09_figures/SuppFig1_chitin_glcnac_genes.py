@@ -3,9 +3,10 @@
 Hand-laid arrow map in editable SVG. Left: gbpA and chiA (E1 chromosome,
 0.1-1.0 Mb); right: the contiguous nagA-glmS-glucosamine kinase-chb cluster at
 3.888-3.895 Mb. Gene coordinates are the E1 Prokka annotation (L5.gff).
-Run from 09_figures/ after `mkdir -p svgout`; writes svgout/Fig. S1.svg.
+Run from 09_figures/; writes svgout/Fig. S1.svg.
 """
-import sys; sys.path.insert(0,'.')
+import os, sys; sys.path.insert(0, '.')
+os.makedirs('svgout', exist_ok=True)
 from _svglib import *
 
 H=150.0

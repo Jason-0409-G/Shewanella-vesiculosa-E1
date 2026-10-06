@@ -4,7 +4,6 @@ Computed from the Prokka v1.15.6 GenBank and CDS FASTA files; all contigs of dra
 assemblies are included.
 """
 from Bio import SeqIO
-from Bio.SeqUtils import gc_fraction
 from pathlib import Path
 import pandas as pd
 from collections import Counter

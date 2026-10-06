@@ -3,9 +3,10 @@
 Per-strain counts of the six CAZy classes (GH, GT, PL, CE, AA, CBM) from the
 dbCAN3 >=2-of-3-tool consensus; the numbers live in SuppFig2_cazyme_sankey_data.py.
 E1 ribbons are highlighted and the E1 GH / GT / CBM counts are labelled.
-Run from 09_figures/ after `mkdir -p svgout`; writes svgout/Fig. S2.svg.
+Run from 09_figures/; writes svgout/Fig. S2.svg.
 """
-import sys; sys.path.insert(0,'.')
+import os, sys; sys.path.insert(0, '.')
+os.makedirs('svgout', exist_ok=True)
 from _svglib import *
 from SuppFig2_cazyme_sankey_data import STRAINS, CLASSES, FLOW
 

@@ -63,7 +63,7 @@ def reassemble(genome: str, spec: dict) -> tuple[str, str]:
     if len(protein) != spec["protein_aa"]:
         sys.exit(f"expected {spec['protein_aa']} aa, got {len(protein)}")
     if "*" in protein:
-        sys.exit(f"internal stop codon in the reassembled protein")
+        sys.exit("internal stop codon in the reassembled protein")
     return cds, protein, removed
 
 

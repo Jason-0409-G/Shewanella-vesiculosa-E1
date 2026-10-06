@@ -39,7 +39,7 @@ TARGETS = {
     "OG0001451_GH1": {          # bglB
         "og": "OG0001451",
         # sp14 copy is truncated by the contig end (JACJFI010000009.1, 39.5 kb;
-        # gene ends 99 bp from the boundary, 89 aa shorter): assembly artefac
+        # gene ends 99 bp from the boundary, 89 aa shorter): assembly artefact
         "exclude": ["sp14"],
     },
     "OG0001452_GH3_e227": {
@@ -65,7 +65,7 @@ def load_orthogroups() -> dict[str, dict[str, list[str]]]:
                 result[og][col] = [g.strip() for g in str(cell).split(",")]
             else:
                 result[og][col] = []
-    return resul
+    return result
 
 
 def load_seqs(strain: str, kind: str) -> dict[str, str]:

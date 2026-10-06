@@ -50,6 +50,8 @@ M7_GENES = [("GH3_e108", "KDH10_01707"), ("galR", "KDH10_01700"),
             ("MFS", "KDH10_01697"), ("01696", "KDH10_01696")]
 
 M7_SPAN_ALSO = ["KDH10_01695"]   # second ORF of M7 GH3_e227: counted in the span, not drawn
+# Gene colours here follow the Fig. 4b palette, not the brown-gold scheme of the
+# published Fig. 1d, which was recoloured in the vector editor.
 COLOURS = {"GH3_e108": "#266C9A", "galR": "#8B5E3C", "bglT": "#D78C3C",
            "bglB": "#1C8458", "MFS": "#763A8E",
            "GH3_e227": "#B6392B", "01696": "#B6392B"}

@@ -7,7 +7,7 @@ submitted figure. Nodes are labelled when SH-aLRT >= 85.
 SuppFig3_island_gene_trees.py is the data-driven counterpart: it reads the
 .treefile outputs directly (matplotlib layout, labels at either value >= 80)
 and does not reproduce the submitted layout exactly.
-Run from 09_figures/ after `mkdir -p svgout`; writes svgout/Fig. S3.svg.
+Run from 09_figures/; writes svgout/Fig. S3.svg.
 """
 import sys, io, re; sys.path.insert(0,'.')
 from _svglib import *

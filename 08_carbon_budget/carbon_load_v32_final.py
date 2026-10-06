@@ -16,7 +16,6 @@ Chain (per productive season, 181 d, Nov-Apr; Cavan et al. 2024 SI):
   community (not its share of the step), f = other beta-glucosidase carriers, m = relative per-cell activity
 """
 import json
-from itertools import product
 from pathlib import Path
 
 # ---- parameters: (best, low, high) -----------------------------------------

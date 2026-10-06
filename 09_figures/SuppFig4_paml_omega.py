@@ -4,9 +4,10 @@ Bars: omega (dN/dS) under the PAML codeml M0 one-ratio model.
 Right-hand column: P value of the branch-model likelihood-ratio test
 (two-ratio model with the E1 tip as foreground vs M0, df = 1; "Branch LRT").
 It is not the branch-site test.
-Run from 09_figures/ after `mkdir -p svgout`; writes svgout/Fig. S4.svg.
+Run from 09_figures/; writes svgout/Fig. S4.svg.
 """
-import sys; sys.path.insert(0,'.')
+import os, sys; sys.path.insert(0, '.')
+os.makedirs('svgout', exist_ok=True)
 from _svglib import *
 H=300.0
 BLUE='#A6C8E2'; SALMON='#E9A7A3'; LINE='#E08B84'; REDLAB='#B5451B'; TXT='#111111'

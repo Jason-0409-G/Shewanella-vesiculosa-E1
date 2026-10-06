@@ -8,7 +8,7 @@ Two LRTs per OG:
     Supplementary Fig. 4.
   LRT 2: branch-site model A vs A-null (omega2 fixed at 1)
     H0: no positive selection on the E1 branch; H1: omega2 > 1 at some sites.
-    The statistic is referred to chi2(1), the conservative option. The manuscrip
+    The statistic is referred to chi2(1), the conservative option. The manuscript
     uses the standard 50:50 mixture of chi2(0) and chi2(1); all branch-site
     statistics were <= 0.19 (mixture critical value 2.71 at alpha = 0.05), so the
     conclusion is unchanged. These P values are not reported in the manuscript.
@@ -135,7 +135,7 @@ def main():
         # ----------------- Branch model ω -----------------
         omega_bg, omega_fg = extract_omegas_branch(out_files["branch"])
         if omega_bg is not None:
-            print(f"  Branch model:")
+            print("  Branch model:")
             print(f"    Background omega                = {omega_bg:.4f}")
             print(f"    Foreground omega (E1 lineage)  = {omega_fg:.4f}")
             print(f"    E1/background ratio             = {omega_fg/omega_bg:.2f}x" if omega_bg > 0 else "")
@@ -143,8 +143,8 @@ def main():
         # ----------------- bsA site classes -----------------
         bsA_omegas = extract_bsA_omegas(out_files["bsA"])
         if bsA_omegas:
-            print(f"\n  Branch-site Model A (E1 #1 foreground):")
-            print(f"    Site class      proportion    bg ω      fg ω")
+            print("\n  Branch-site Model A (E1 #1 foreground):")
+            print("    Site class      proportion    bg ω      fg ω")
             classes = ["0 (purifying)", "1 (neutral)", "2a (pos sel BG=pur)", "2b (pos sel BG=neut)"]
             for i, cls in enumerate(classes):
                 p = bsA_omegas["proportions"][i]

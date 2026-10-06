@@ -34,8 +34,8 @@ for og in "${OGS[@]}"; do
     echo ""
     echo "=== Aligning $og ($n_seqs sequences) ==="
 
-    mafft --localpair --maxiterate 1000
-          --thread 8
+    mafft --localpair --maxiterate 1000 \
+          --thread 8 \
           "$prot_in" > "$prot_aln" 2> "$indir/mafft.log"
 
     python3 -c "

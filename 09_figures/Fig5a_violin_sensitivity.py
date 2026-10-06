@@ -4,7 +4,7 @@
 Left: dot-and-range chart on a log axis, one row each for krill carbon intake,
 cellobiose carbon hydrolysed by gut bacteria, and its partition into growth and
 respiration. Scenario ensemble: Q/PP, phi and epsilon are drawn log-uniformly and
-AE and GGE uniformly, independently, within the ranges of Supplementary Table S7
+AE and GGE uniformly, independently, within the ranges of Supplementary Data 7
 (fixed seed). The ensemble only visualises the range and is not a probability
 distribution. Symbols are the nominal values (or the epsilon = 1 upper bound),
 thick bars the epsilon = 0.1-1 range at nominal parameters, thin whiskers the

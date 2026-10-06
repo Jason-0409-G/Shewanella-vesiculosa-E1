@@ -2,7 +2,7 @@
 
 The four ω values reported in the manuscript and in Supplementary Fig. 4 were **not**
 produced by a single pass through `01`–`07`. The gene set changed during the analysis
-and the scripts were never retro-fitted, so they are kept here as the record of wha
+and the scripts were never retro-fitted, so they are kept here as the record of what
 was actually run. Read this before trying to re-execute them.
 
 ## Execution history
@@ -45,14 +45,23 @@ alignment (ω = 0.0723).
 
 ## Taxon counts
 
-`bglB` and `GH3_e108` have seven taxa, not eight — OrthoFinder recovered no ortholog in
-*S.* sp014164505 and *S. psychromarinicola* respectively. The MFS transporter and the
+`bglB` and `GH3_e108` have seven taxa, not eight. For `GH3_e108` OrthoFinder recovered no
+ortholog in *S. psychromarinicola*. For `bglB` the *S.* sp014164505 copy was excluded by hand:
+it sits 99 bp from the end of its contig and is 89 aa short, which `01_extract_island_gene_sequences.py`
+records as an assembly artefact rather than a real truncation. The MFS transporter and the
 eight-taxon GH3_e227 alignment have all eight.
 
 ## Likelihood-ratio tests
 
-`07_likelihood_ratio_tests.py` refers the branch-site statistic to χ²(1). The manuscrip
+`07_likelihood_ratio_tests.py` refers the branch-site statistic to χ²(1). The manuscript
 uses the standard 50:50 χ²(0):χ²(1) mixture, which is the less conservative of the two;
-since every branch-site statistic was ≤ 0.19 against a mixture critical value of 2.71,
-the two give the same answer. The P values printed beside the bars in Supplementary
+every branch-site statistic is zero here, because the maximum-likelihood estimate of omega2
+sits on the boundary at 1, so both referents give P = 1 and the two agree. The P values printed beside the bars in Supplementary
 Fig. 4 are the **branch** LRT (two-ratio vs M0), for which χ²(1) is the correct null.
+
+## One ordering constraint
+
+`07_likelihood_ratio_tests.py` writes `paml_LRT_summary.tsv` from scratch, while
+`06b_run_codeml_MFS_transporter.py` adds the MFS row to the same file. Run `07` first and
+`06b` after it, which is the reverse of the numbering; running them the other way round
+drops the MFS row.

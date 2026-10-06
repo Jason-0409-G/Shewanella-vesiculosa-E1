@@ -10,7 +10,8 @@
 #   A3D1N7  S. baltica OS155 BglT, locus Sbal_1130, GenBank ABN60650
 #   P31435  E. coli K-12 YicJ
 #
-# Expected result, as reported in the manuscript (BLAST+ default parameters):
+# Result of the original run, reproduced with BLAST+ default parameters. The manuscript
+# quotes these rounded, as 88 % and 45 %:
 #   PB002_01808 vs A3D1N7   88.2 % identity over 439 aa, 99 % query coverage
 #   PB002_01808 vs P31435   44.7 % identity over 441 aa, 99 % query coverage
 #

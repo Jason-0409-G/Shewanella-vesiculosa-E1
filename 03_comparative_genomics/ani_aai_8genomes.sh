@@ -12,13 +12,16 @@
 #         proteins/{...}.faa                                  Prokka proteins, for AAI
 # Output  ANI_8x8.tsv(.matrix), AAI_8x8.tsv(.mtx), read by 09_figures/Fig2c_ani_aai_heatmap.R
 #
-# E1 vs M7: ANI 98.5 %, AAI 99.0 %. ANI is not symmetric; the figure uses the matrix
-# output, in which the two directions are averaged.
+# E1 (L5) vs M7: ANI 98.5 %, AAI 99.0 %. fastANI is not symmetric, so the two
+# directions differ slightly; the heatmap script reads the long-format table and
+# takes one direction per triangle.
 set -euo pipefail
 
 GENOMES="${GENOMES:-./genomes}"
 PROTEINS="${PROTEINS:-./proteins}"
-LABELS=(E1 M7 frig livi pola psyc sp02 sp14)
+# Internal strain keys, as used in the stored results and read by
+# 09_figures/Fig2c_ani_aai_heatmap.R. L5 is the internal name of E1.
+LABELS=(L5 M7 frig livi pola psyc sp02 sp14)
 
 # -- ANI ----------------------------------------------------------------------
 ls "${GENOMES}"/*.fna > genome_list.txt

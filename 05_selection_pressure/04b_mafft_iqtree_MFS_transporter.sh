@@ -22,14 +22,14 @@ echo "  -> $ALN ($(grep -c '^>' "$ALN") sequences)"
 
 # -m TEST: ModelFinder; -B 1000: ultrafast bootstrap; -alrt 1000: SH-aLRT; -T 4: threads
 echo "[2] IQ-TREE"
-iqtree -s "$ALN"
-       -m TEST
-       -B 1000
-       -alrt 1000
-       -T 4
-       --seed 42
-       --prefix "$TREE_PREFIX"
-       --redo
+iqtree -s "$ALN" \
+       -m TEST \
+       -B 1000 \
+       -alrt 1000 \
+       -T 4 \
+       --seed 42 \
+       --prefix "$TREE_PREFIX" \
+       --redo \
        2>&1 | tee iqtree.log
 
 echo ""

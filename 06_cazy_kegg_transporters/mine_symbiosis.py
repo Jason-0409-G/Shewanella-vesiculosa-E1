@@ -112,11 +112,11 @@ def main():
             hits = strain_hits[s].get(cat, [])
             row[s] = len(hits)
             gene_lists[s] = ";".join(sorted({pref if pref else q for q,_,pref,_ in hits})) or "-"
-        row["L5_genes"] = gene_lists["L5"]
+        row["E1_genes"] = gene_lists["L5"]
         row["M7_genes"] = gene_lists["M7"]
         rows_out.append(row)
 
-    count_df = pd.DataFrame(rows_out, columns=["category"]+STRAINS+["L5_genes","M7_genes"])
+    count_df = pd.DataFrame(rows_out, columns=["category"]+STRAINS+["E1_genes","M7_genes"])
     count_df.to_csv(os.path.join(OUT_DIR, "symbiosis_counts.tsv"), sep="\t", index=False)
 
     print(count_df.to_string(index=False))

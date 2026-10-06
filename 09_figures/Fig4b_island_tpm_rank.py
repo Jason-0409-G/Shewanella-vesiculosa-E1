@@ -5,7 +5,8 @@ Every CDS is ranked by transcript abundance; the six genes of the
 beta-glucoside-processing island are highlighted. Gene symbols and colours
 follow the published panel.
 
-Input   L5_TPM_matrix_v_L5reasearch.tsv   CoverM TPM joined to the Prokka table
+Input   L5_TPM_matrix_eggNOG_annotated.tsv  CoverM TPM joined to the Prokka table,
+        written by 07_metatranscriptome/annotate_tpm_with_eggnog.py
         (07_metatranscriptome/); optional first argument
 Output  Fig4b_island_tpm_rank.svg, Fig4b_island_tpm_rank_editable.svg (clip paths
         removed so that text stays editable in a vector editor), Fig4b_island_tpm_rank.png
@@ -17,7 +18,6 @@ import numpy as np
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from matplotlib.lines import Line2D
 from pathlib import Path
 
@@ -33,7 +33,7 @@ matplotlib.rcParams.update({
     "svg.fonttype":     "none",   # keep text editable in the vector editor
 })
 
-TPM_TABLE = Path(sys.argv[1] if len(sys.argv) > 1 else "L5_TPM_matrix_v_L5reasearch.tsv")
+TPM_TABLE = Path(sys.argv[1] if len(sys.argv) > 1 else "L5_TPM_matrix_eggNOG_annotated.tsv")
 OUTDIR = Path(".")
 
 # -- read data -------------------------------------------------------------
@@ -49,13 +49,13 @@ n_total     = len(cds)
 n_expressed = int((cds["Kin-1"] > 1).sum())
 
 # -- genes of the beta-glucoside-processing island -------------------------
-# locus -> (display name, colour).  Colours are those of the published panel.
+# locus -> (display name, colour), sampled from the published panel.
 ISLAND = {
     "PB002_01811": ("GH3_e227",        "#B6392B"),   # island-borne beta-glucosidase
     "PB002_01800": ("GH3_e108",        "#266C9A"),
     "PB002_01809": ("bglB",            "#1C8458"),   # GH1 beta-glucosidase
     "PB002_01808": ("bglT",            "#D78C3C"),   # beta-glucoside transporter
-    "PB002_01807": ("galR",            "#8B5E3C"),   # HTH-type transcriptional regulator
+    "PB002_01807": ("galR",            "#6A3906"),   # HTH-type transcriptional regulator
     "PB002_01810": ("MFS transporter\n(TPM = 0)", "#763A8E"),
 }
 

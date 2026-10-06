@@ -1,16 +1,49 @@
+# Python
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
-.DS_Store
+
+# R
 .Rhistory
 .RData
+.Rproj.user/
+
+# macOS / editors
+.DS_Store
+*~
+.vscode/
+.idea/
+
+# Input data: not redistributed, retrieve from the accessions in the README
 data/
 *.fna
 *.faa
+*.ffn
 *.fasta
+*.fa
 *.gbk
 *.gff
 *.bam
+*.sam
 *.fastq
 *.fastq.gz
+
+# Outputs produced by running these scripts
+*.svg
+*.png
+*.pdf
+*.tsv
+*.csv
+*.xlsx
+*.json
+*.log
+*.out
+*.nwk
 *.treefile
+*.contree
+*.aln
+*.phy
+*.ctl
+iTOL_*.txt
+results/
+svgout/

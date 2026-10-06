@@ -7,7 +7,7 @@ published panel), draws E1 in red
 and one scale bar per tree. Text is kept editable (svg.fonttype = none).
 SuppFig3_island_gene_trees_layout.py is the self-contained version with the
 newicks inlined and the leaf order of the submitted figure.
-Run from 09_figures/ after `mkdir -p svgout`; writes
+Run from 09_figures/; writes
 svgout/Fig. S3_from_treefiles.{svg,png}.
 """
 from pathlib import Path

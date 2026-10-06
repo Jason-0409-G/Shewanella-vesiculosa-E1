@@ -3,9 +3,10 @@
 Arrow map of the type I R-M locus (hsdR, hsdS, hsdM), the two E1-unique
 DUF262/DUF1524 genes, relB, a phage integrase and a WYL-domain regulator, with
 Pfam domains below each arrow. Coordinates are the E1 Prokka annotation.
-Run from 09_figures/ after `mkdir -p svgout`; writes svgout/Fig. S5.svg.
+Run from 09_figures/; writes svgout/Fig. S5.svg.
 """
-import sys; sys.path.insert(0,'.')
+import os, sys; sys.path.insert(0, '.')
+os.makedirs('svgout', exist_ok=True)
 from _svglib import *
 H=182.0
 RM='#2C5F8D'; UNIQ='#E9000D'; MOB='#B5B5B5'; MOB2='#CFCFCF'; TA='#74A9CF'; WYL='#9C7BAA'

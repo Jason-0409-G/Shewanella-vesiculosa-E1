@@ -21,7 +21,6 @@ Output
 Fig2b_species_tree_8genomes.{svg,png}
 """
 import argparse
-from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")

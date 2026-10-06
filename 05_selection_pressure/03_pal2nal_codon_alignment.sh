@@ -7,7 +7,7 @@
 #
 # Flags:
 #   -nogap          remove all columns containing a gap (and in-frame stop codons),
-#                   so the codon alignment is shorter than the protein alignmen
+#                   so the codon alignment is shorter than the protein alignment
 #   -output paml    PAML-compatible PHYLIP
 #   -codontable 11  bacterial genetic code
 #
@@ -45,19 +45,19 @@ for og in "${OGS[@]}"; do
     echo "=== $og  (prot: $n_prot, nucl: $n_nucl) ==="
 
     # PAML format, for codeml
-    pal2nal.pl "$prot_aln" "$nucl_ffn"
-        -output paml
-        -codontable 11
-        -nogap
+    pal2nal.pl "$prot_aln" "$nucl_ffn" \
+        -output paml \
+        -codontable 11 \
+        -nogap \
         > "$codon_phy" 2> "$indir/pal2nal.log" || {
         echo "  pal2nal failed for $og, see $indir/pal2nal.log"
         continue
     }
 
     # FASTA format (gaps retained)
-    pal2nal.pl "$prot_aln" "$nucl_ffn"
-        -output fasta
-        -codontable 11
+    pal2nal.pl "$prot_aln" "$nucl_ffn" \
+        -output fasta \
+        -codontable 11 \
         > "$codon_fa" 2>> "$indir/pal2nal.log" || true
 
     if [ -s "$codon_phy" ]; then

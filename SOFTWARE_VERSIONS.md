@@ -15,8 +15,8 @@ should be retrieved from the accessions in the Data availability statement.
 | Tool | Version | Database | Verified from |
 |---|---|---|---|
 | Filtlong | 0.3.1 | — | `filtlong --version` in the assembly notebook. Run as `--min_length 1000 --min_mean_q 90`; it removed two reads |
-| Flye | 2.9.6-b1802 | — | `flye.log` line 2, `INFO: Starting Flye 2.9.6-b1802`. One closed circular contig, 4,858,980 bp at 133x |
-| CheckM2 | 1.1.0 | CheckM2 database, Zenodo record 14897628 | run log, `INFO: Running CheckM2 version 1.1.0`. E1: 100 % complete, 0.51 % contamination |
+| Flye | 2.9.6-b1802 | — | the Flye log of the E1 run, `INFO: Starting Flye 2.9.6-b1802`. Its `assembly_info.txt` records one closed circular contig, 4,858,980 bp at 133x. That log is not in the current project tree; the assembly summary is |
+| CheckM2 | 1.1.0 | CheckM2 database, Zenodo record 14897628 | the CheckM2 run log, `INFO: Running CheckM2 version 1.1.0`. The surviving `quality_report.tsv` gives E1 as 100 % complete with 0.51 % contamination |
 | CheckM | 1.2 | `checkm_data_2015_01_16` | used for the 141-genome panel (`lineage_wf --genes -x faa`, `qa -o 2 --tab_table`). These are the values in the Completeness column of Supplementary Data 2 and on Fig. 2a. CheckM and CheckM2 use different marker sets and their values are not comparable |
 | Prokka | 1.15.6 | bundled UniProt and Pfam HMMs | `L5.log` line 1 |
 | dbCAN3 | 5.2.8 | dbCAN-HMM, CAZy.dmnd, dbCAN-sub, all at the same release | batch log. DIAMOND step `--evalue 1e-102 --max-target-seqs 1`; HMM step `evalue 1e-15 cov 0.35` |
@@ -29,7 +29,7 @@ should be retrieved from the accessions in the Data availability statement.
 | Tool | Version | Verified from |
 |---|---|---|
 | IQ-TREE | 3.1.1, built 8 Apr 2026 | line 1 of every `*.log` |
-| ModelFinder | bundled with IQ-TREE, 1,232 protein models | `Best-fit model according to BIC` in each `.iqtree` report |
+| ModelFinder | bundled with IQ-TREE | `Best-fit model according to BIC` in each `.iqtree` report. `-m MFP` searched 1,232 protein models for the supermatrix trees; the single-gene trees used `-m TEST`, a smaller set |
 | UFBoot2 | bundled with IQ-TREE | `-B 1000` / `-bb 1000` in the logs |
 | SH-aLRT | bundled with IQ-TREE | `-alrt 1000` in the logs. Note that the 141-genome tree was run without it |
 | MAFFT | 7.526 (2024-04-26) | `mafft --version` |
@@ -48,7 +48,7 @@ should be retrieved from the accessions in the Data availability statement.
 
 | Tool | Version | Verified from |
 |---|---|---|
-| PAML codeml | 4.10.10 (29 Jan 2026) | line 1 of each `*.out` file |
+| PAML codeml | 4.10.10 (29 Jan 2026) | the `CODONML (in paml version 4.10.10, 29 Jan 2026)` banner in each `*.out` file |
 | PAL2NAL | 14 | `pal2nal.pl` header |
 
 ## 5. Metatranscriptome and metabolic reconstruction
@@ -94,7 +94,9 @@ iqtree -s supermatrix.faa -m MFP -bb 1000 -alrt 1000 -nt AUTO -ntmax 8 --seed 42
 
 # Protein gene trees for the four island genes (Supplementary Fig. 3).
 iqtree -s {OG}_prot.aln -m TEST -B 1000 -alrt 1000 --prefix {OG}_tree -T 4 --seed 42 --redo
-#   GH3_e108 -> Q.PFAM+G4;  bglB -> WAG+G4;  MFS -> Q.PLANT+G4;  GH3_e227 -> Q.PLANT+G4
+#   GH3_e108 -> Q.PFAM+G4;  bglB -> WAG+G4;  MFS -> Q.PLANT+G4
+#   GH3_e227 -> Q.PLANT+G4 for the seven-taxon tree; the model of the eight-taxon
+#   re-run behind the reported omega was not recorded
 ```
 
 Alignment settings differ between the two uses of MAFFT: `--auto` for the supermatrix

@@ -14,7 +14,9 @@ routes, not a genuine capacity for synthesis.
 Inputs
 ------
 data/modcomp/out/{host,E1,M7}/{org}_pathways.tsv   per-organism tool output
-L5_TPM_matrix_v_L5reasearch.tsv   E1 TPM table with eggNOG KO column (07_metatranscriptome/);
+L5_TPM_matrix_eggNOG_annotated.tsv  E1 TPM table with the eggNOG KO column, written by
+          07_metatranscriptome/annotate_tpm_with_eggnog.py. The file used for the
+          published panel was named L5_TPM_matrix_v_L5reasearch.tsv;
                                   optional first argument
 
 Outputs (current directory)
@@ -35,7 +37,7 @@ mpl.rcParams.update({"font.family": "Arial", "font.size": 7,
                      "svg.fonttype": "none", "pdf.fonttype": 42, "ps.fonttype": 42})
 
 WORK = Path("data/modcomp")
-TPMF = Path(sys.argv[1] if len(sys.argv) > 1 else "L5_TPM_matrix_v_L5reasearch.tsv")
+TPMF = Path(sys.argv[1] if len(sys.argv) > 1 else "L5_TPM_matrix_eggNOG_annotated.tsv")
 OUT  = Path(".")
 
 # tool output directory -> column key (L5 is the internal key of E1)
@@ -50,20 +52,20 @@ CAT_COLORS = {"AA Synthesis":"#1565C0","Antioxidation":"#AD1457",
               "Cofactors & Vitamins":"#2E7D32","Central Carbon":"#E65100"}
 MODULES = [
  ("AA Synthesis","M00020","Serine"),
- ("AA Synthesis","M00018","Threonine*"),
+ ("AA Synthesis","M00018","Threonine"),
  ("AA Synthesis","M00021","Cysteine"),
- ("AA Synthesis","M00017","Methionine*"),
- ("AA Synthesis","M00019","Val/Ile*"),
- ("AA Synthesis","M00432","Leucine*"),
- ("AA Synthesis","M00570","Isoleucine*"),
- ("AA Synthesis","M00016","Lysine*"),
+ ("AA Synthesis","M00017","Methionine"),
+ ("AA Synthesis","M00019","Val/Ile"),
+ ("AA Synthesis","M00432","Leucine"),
+ ("AA Synthesis","M00570","Isoleucine"),
+ ("AA Synthesis","M00016","Lysine"),
  ("AA Synthesis","M00028","Ornithine"),
  ("AA Synthesis","M00844","Arginine"),
  ("AA Synthesis","M00022","Shikimate"),
- ("AA Synthesis","M00023","Tryptophan*"),
- ("AA Synthesis","M00024","Phenylalanine*"),
+ ("AA Synthesis","M00023","Tryptophan"),
+ ("AA Synthesis","M00024","Phenylalanine"),
  ("AA Synthesis","M00025","Tyrosine"),
- ("AA Synthesis","M00026","Histidine*"),
+ ("AA Synthesis","M00026","Histidine"),
  ("Antioxidation","M00176","Sulfate reduction"),
  ("Antioxidation","M00118","Glutathione"),
  ("Antioxidation","M00121","Heme"),
