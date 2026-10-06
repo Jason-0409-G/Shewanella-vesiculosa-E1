@@ -14,6 +14,8 @@ M7_GENOME = os.environ.get("M7_GENOME", "M7.fna")
 OUT = os.environ.get("OUT_DIR", "M7_island_check")
 os.makedirs(OUT, exist_ok=True)
 
+LOCUS_WINDOW = 10_000   # bp; HSPs farther than this from the best hit are a different locus
+
 ISLAND = {  # E1 locus tag -> gene label
     "PB002_01800": "GH3_e108",
     "PB002_01809": "bglB",
@@ -68,19 +70,45 @@ for loc, label in ISLAND.items():
         print(f"  blastp->M7 proteome: best {sid} | id {pid:.0f}% | qcov {qcov}% | "
               f"M7prot {sl} aa = {ratio:.0f}% of E1 length")
     else:
+        ratio = 0.0
         print("  blastp->M7 proteome: NO annotated hit")
     # tblastn vs M7 genome
     tb = [h for h in tblastn(qfa) if h[0] == loc]
     if tb:
+        # Keep only the HSPs that belong to the same locus as the best hit. Aggregating
+        # every HSP on the chromosome pulls in weak, unrelated matches elsewhere in the
+        # genome, which inflates the coverage past 100 % and makes every gene look split.
         best = tb[0]
         sid = best[1]
-        same = [h for h in tb if h[1] == sid]
-        tot_aln = sum(int(h[3]) for h in same)
-        qcov_dna = 100 * tot_aln / qlen
-        n_hsp = len(same)
-        wpid = sum(float(h[2]) * int(h[3]) for h in same) / tot_aln
+        b_lo, b_hi = sorted((int(best[7]), int(best[8])))
+        near = []
+        for h in tb:
+            if h[1] != sid:
+                continue
+            lo, hi = sorted((int(h[7]), int(h[8])))
+            if lo <= b_hi + LOCUS_WINDOW and hi >= b_lo - LOCUS_WINDOW:
+                near.append(h)
+        # Query coverage is the union of the aligned query intervals, not their sum,
+        # so overlapping HSPs are not counted twice.
+        spans = sorted((int(h[5]), int(h[6])) for h in near)
+        merged = []
+        for lo, hi in spans:
+            if merged and lo <= merged[-1][1] + 1:
+                merged[-1][1] = max(merged[-1][1], hi)
+            else:
+                merged.append([lo, hi])
+        covered = sum(hi - lo + 1 for lo, hi in merged)
+        tot_aln = sum(int(h[3]) for h in near)
+        qcov_dna = 100 * covered / qlen
+        n_hsp = len(near)
+        wpid = sum(float(h[2]) * int(h[3]) for h in near) / tot_aln
         print(f"  tblastn->M7 genome:  {n_hsp} HSP on {sid} | covers {qcov_dna:.0f}% of E1 protein | wgt_id {wpid:.0f}%")
-        verdict = ("INTACT ortholog" if (qcov_dna >= 85 and n_hsp <= 2 and wpid >= 60)
+        # A frameshift leaves the DNA intact but splits the protein: tblastn still
+        # covers the whole gene, in two or more HSPs, while the annotated M7 protein
+        # is much shorter than its E1 counterpart. Both signals are therefore used.
+        prot_ok = bool(bp) and ratio >= 85
+        intact = qcov_dna >= 85 and n_hsp == 1 and wpid >= 60 and prot_ok
+        verdict = ("INTACT ortholog" if intact
                    else "TRUNCATED / split / pseudogenized")
         print(f"  --> {verdict}")
     else:

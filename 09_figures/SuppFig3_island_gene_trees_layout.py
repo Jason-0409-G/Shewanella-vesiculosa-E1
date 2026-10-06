@@ -9,7 +9,9 @@ SuppFig3_island_gene_trees.py is the data-driven counterpart: it reads the
 and does not reproduce the submitted layout exactly.
 Run from 09_figures/; writes svgout/Fig. S3.svg.
 """
+import os
 import sys, io, re; sys.path.insert(0,'.')
+os.makedirs('svgout', exist_ok=True)
 from _svglib import *
 from Bio import Phylo
 

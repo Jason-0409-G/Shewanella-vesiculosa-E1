@@ -22,7 +22,9 @@ SUBSTRATE_GROUPS = {
     "Mannan":               ["GH2","GH26","GH36","GH76","GH92","GH125"],
     "Pectin":               ["PL1","PL2","PL3","PL4","PL10","PL11","GH28","GH78","GH88","GH105"],
     "Alginate":             ["PL5","PL7","PL14","PL15","PL17","PL18","PL36","PL39"],
-    "Agarose":              ["GH16_3","GH86","GH96","PL6"],
+    # build_cazy_consensus_matrix.py collapses subfamily suffixes, so a subfamily such as
+# GH16_3 can never match; agarose is therefore carried by GH86, GH96 and PL6 alone.
+    "Agarose":              ["GH86","GH96","PL6"],
     "Peptidoglycan":        ["GH73","GH102","GH103","GH104"],
     "Other_polysaccharide": ["GH23","GH24","GH25","GT2","GT4","GT26","GT51"],
 }

@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 ROOT     = Path(".")
-PROKKA8  = ROOT / "02_annotation/annotation/8strains_prokka"
+PROKKA8  = ROOT / "02_annotation/annotation/8strains_prokka_v1156"
 PAML_RES = ROOT / "04_selection_pressure/paml/results"
 OG       = "OG0000506_MFS"
 OGDIR    = PAML_RES / OG

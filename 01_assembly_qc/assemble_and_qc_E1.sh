@@ -41,4 +41,5 @@ checkm2 database --download --path "${CHECKM2_DB}"
 checkm2 predict --threads 4 \
     --input "${WORK}/contigs_split/" \
     --output-directory "${WORK}/checkm2_out" \
+    --database_path "${CHECKM2_DB}/CheckM2_database/uniref100.KO.1.dmnd" \
     -x fasta --force

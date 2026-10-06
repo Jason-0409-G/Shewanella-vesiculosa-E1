@@ -8,8 +8,9 @@
 # recorded in the header of AAI_8x8.tsv; the thread count and search backend used
 # at the time were not recorded.
 #
-# Input   genomes/{E1,M7,frig,livi,pola,psyc,sp02,sp14}.fna   for ANI
-#         proteins/{...}.faa                                  Prokka proteins, for AAI
+# Input   genomes/{L5,M7,frig,livi,pola,psyc,sp02,sp14}.fna   for ANI
+#         proteins/{L5,M7,...}.faa                            Prokka proteins, for AAI
+#         L5 is the internal name of E1; the stored results and the heatmap script use it
 # Output  ANI_8x8.tsv(.matrix), AAI_8x8.tsv(.mtx), read by 09_figures/Fig2c_ani_aai_heatmap.R
 #
 # E1 (L5) vs M7: ANI 98.5 %, AAI 99.0 %. fastANI is not symmetric, so the two
