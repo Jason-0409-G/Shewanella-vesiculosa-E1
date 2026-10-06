@@ -15,7 +15,7 @@ Code accompanying the manuscript:
 | BioProject | [PRJNA1478518](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1478518) |
 | BioSample | SAMN60895750 |
 | Genome assembly (WGS) | JBZUHQ000000000 — single closed circular chromosome, 4,858,980 bp, locus-tag prefix `AC4LHR` |
-| Raw PacBio HiFi reads | SRA submission SUB16537385 |
+| Raw PacBio HiFi reads | deposited under the same BioProject; the run accession appears there on release |
 | Krill-gut metatranscriptomes | PRJNA1210771 (previously published) |
 
 Genome and read records are held until publication.
