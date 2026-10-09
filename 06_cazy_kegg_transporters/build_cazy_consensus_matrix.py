@@ -8,14 +8,15 @@ Consensus rule:
   - strip the subfamily suffix (GH13_18 -> GH13, GH13_e144 -> GH13)
   - each protein contributes at most +1 to each base family it carries
 
-Input   dbcan/{strain}_dbcan/overview.tsv for the eight strains
+Input   8strains_dbcan_v528/{strain}_dbcan/overview.tsv, written by
+        02_annotation/dbcan_cazyme_8genomes.sh
 Output  all_CAZy_family_matrix.tsv (header: family, L5_PB002, M7_REF, S_frigidimarina, ...),
         read by count_carbohydrate_substrate_genes.py and used for the Fig. 3c heatmap
 """
 import re
 from pathlib import Path
 
-DBCAN = Path("dbcan")
+DBCAN = Path("8strains_dbcan_v528")
 OUT_FILE = Path("all_CAZy_family_matrix.tsv")
 
 # dbCAN directory -> strain column name (L5_PB002 = S. vesiculosa E1)

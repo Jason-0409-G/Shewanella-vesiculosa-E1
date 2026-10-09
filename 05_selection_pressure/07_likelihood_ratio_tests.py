@@ -44,6 +44,8 @@ def extract_lnL(out_file: Path) -> float | None:
 
 def extract_omega_M0(out_file: Path) -> float | None:
     """Extract single ω from M0 output."""
+    if not out_file.exists():
+        return None
     text = out_file.read_text()
     m = re.search(r"omega \(dN/dS\)\s*=\s+(-?[\d.]+)", text)
     return float(m.group(1)) if m else None
@@ -54,6 +56,8 @@ def extract_omegas_branch(out_file: Path) -> tuple[float | None, float | None]:
     Background and foreground (#1) omega from branch-model output, i.e. the line
       w (dN/dS) for branches:  0.07289 0.34521
     """
+    if not out_file.exists():
+        return None
     text = out_file.read_text()
     m = re.search(r"w \(dN/dS\) for branches:\s+(.+?)\n", text)
     if not m:
@@ -74,6 +78,8 @@ def extract_bsA_omegas(out_file: Path) -> dict | None:
       background w     0.07289  1.00000  0.07289  1.00000
       foreground w     0.07289  1.00000  9.99999  9.99999
     """
+    if not out_file.exists():
+        return None
     text = out_file.read_text()
     m = re.search(
         r"site class\s+0\s+1\s+2a\s+2b\s*\n"

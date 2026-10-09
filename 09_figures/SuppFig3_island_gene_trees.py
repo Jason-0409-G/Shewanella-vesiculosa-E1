@@ -25,7 +25,8 @@ matplotlib.rcParams.update({
 
 
 SUP_MIN = 85.0   # support threshold, matching the published panel
-RES = Path("../05_selection_pressure/paml/results")   # IQ-TREE gene-tree results (04_iqtree_gene_trees.sh, 04b)
+RES = Path("04_selection_pressure/paml/results")   # where 04_iqtree_gene_trees.sh and 04b write;
+                                                   # see 05_selection_pressure/README.md on this path
 OUT = Path("svgout")
 E1_RED = "#A03A2C"
 

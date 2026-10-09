@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # MAFFT alignment and IQ-TREE gene tree for the MFS transporter (PB002_01810, OG0000506).
-# Run from inside the OG0000506_MFS results directory containing OG0000506_MFS_prot.faa.
+# Takes the directory holding OG0000506_MFS_prot.faa as its first argument, or uses
+# the current directory. 00b_extract_MFS_orthogroup_proteins.py writes that file.
 #   - MAFFT L-INS-i (Katoh & Standley 2013, MBE 30:772); MAFFT v7.526
 #   - IQ-TREE 3.1.1, same options as 04_iqtree_gene_trees.sh
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "${1:-.}"
 
 PREFIX=OG0000506_MFS
 IN_FAA=${PREFIX}_prot.faa

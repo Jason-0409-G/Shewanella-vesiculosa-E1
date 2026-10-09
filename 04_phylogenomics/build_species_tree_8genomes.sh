@@ -18,7 +18,7 @@ N_OG=${1:-100}
 SEED=42
 THREADS=8
 
-SCO_DIR="${SCO_DIR:-./orthofinder_8strains/Single_Copy_Orthologue_Sequences}"
+SCO_DIR="${SCO_DIR:-./orthofinder_8strains/input/OrthoFinder/Results_run_v1/Single_Copy_Orthologue_Sequences}"
 OUT_DIR="${OUT_DIR:-./species_tree}"
 export SCO_DIR OUT_DIR N_OG SEED
 
