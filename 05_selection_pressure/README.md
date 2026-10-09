@@ -55,8 +55,10 @@ eight-taxon GH3_e227 alignment have all eight.
 
 `07_likelihood_ratio_tests.py` refers the branch-site statistic to χ²(1). The manuscript
 uses the standard 50:50 χ²(0):χ²(1) mixture, which is the less conservative of the two;
-every branch-site statistic is zero here, because the maximum-likelihood estimate of omega2
-sits on the boundary at 1, so both referents give P = 1 and the two agree. The P values printed beside the bars in Supplementary
+the two give the same answer here. For bglB, GH3_e108 and the MFS transporter the statistic
+is exactly zero, the maximum-likelihood estimate of omega2 having settled on the boundary at 1;
+for the seven-taxon GH3_e227 results that this script reads it is 0.19, and for the eight-taxon
+re-run behind the reported omega it is zero. The mixture rejects at 2.71, so none is close. The P values printed beside the bars in Supplementary
 Fig. 4 are the **branch** LRT (two-ratio vs M0), for which χ²(1) is the correct null.
 
 ## One ordering constraint

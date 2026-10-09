@@ -8,10 +8,18 @@ Two LRTs per OG:
     Supplementary Fig. 4.
   LRT 2: branch-site model A vs A-null (omega2 fixed at 1)
     H0: no positive selection on the E1 branch; H1: omega2 > 1 at some sites.
-    The statistic is referred to chi2(1), the conservative option. The manuscript
-    uses the standard 50:50 mixture of chi2(0) and chi2(1); all branch-site
-    statistics were <= 0.19 (mixture critical value 2.71 at alpha = 0.05), so the
-    conclusion is unchanged. These P values are not reported in the manuscript.
+    The statistic is referred to chi2(1), the conservative option; the manuscript
+    uses the standard 50:50 mixture of chi2(0) and chi2(1). The choice makes no
+    difference here. For bglB, GH3_e108 and the MFS transporter the statistic is
+    exactly zero, the maximum-likelihood estimate of omega2 having settled on the
+    boundary at 1; for the seven-taxon GH3_e227 run read by this script it is 0.19,
+    and for the eight-taxon re-run behind the reported omega it is zero. The mixture
+    rejects at 2.71, so none of them is close. These P values are not reported in
+    the manuscript.
+
+This script reads the seven-taxon GH3_e227 results, so the omega it prints for that
+gene is 0.0717, not the 0.0759 reported in the manuscript, which comes from the
+eight-taxon re-run described in README.md. The other three genes match the paper.
 
 OG0001992_GH3_NagZ was part of the original run of this list; the gene lies outside
 the island and was not carried into the manuscript, so it is omitted.
@@ -57,7 +65,7 @@ def extract_omegas_branch(out_file: Path) -> tuple[float | None, float | None]:
       w (dN/dS) for branches:  0.07289 0.34521
     """
     if not out_file.exists():
-        return None
+        return (None, None)
     text = out_file.read_text()
     m = re.search(r"w \(dN/dS\) for branches:\s+(.+?)\n", text)
     if not m:
@@ -163,12 +171,17 @@ def main():
         # ----------------- LRT 2: bsA vs bsA_null -----------------
         stat2, pval2 = lrt_branchsite(lnLs["bsA"], lnLs["bsA_null"])
 
+        def fmt(stat, pval):
+            if stat is None or pval is None:
+                return "not computed (a codeml output is missing)"
+            return f"2\u0394lnL = {stat:>7.3f}   p = {pval:.4f}"
+
         print("\n  LRT tests")
-        print(f"  LRT 1 (M0 vs branch):     2ΔlnL = {stat1:>7.3f}   p = {pval1:.4f}")
-        print(f"  LRT 2 (bsA vs bsA null):  2ΔlnL = {stat2:>7.3f}   p = {pval2:.4f}")
+        print(f"  LRT 1 (M0 vs branch):     {fmt(stat1, pval1)}")
+        print(f"  LRT 2 (bsA vs bsA null):  {fmt(stat2, pval2)}")
 
         print("\n  Interpretation:")
-        if pval1 is not None and pval1 < 0.05:
+        if pval1 is not None and pval1 < 0.05 and None not in (omega_fg, omega_bg):
             if omega_fg > omega_bg:
                 print(f"    E1 omega ({omega_fg:.4f}) significantly higher than background ({omega_bg:.4f})")
                 if omega_fg > 1:
