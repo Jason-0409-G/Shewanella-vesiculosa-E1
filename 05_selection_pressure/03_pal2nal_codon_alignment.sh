@@ -25,7 +25,9 @@ OGS=(
 )
 
 echo "=== PAL2NAL version ==="
-pal2nal.pl --help 2>&1 | head -1
+# Called with no arguments, pal2nal.pl prints its usage to stderr; the version
+# banner is the second line of that text.
+pal2nal.pl 2>&1 | sed -n 2p
 
 for og in "${OGS[@]}"; do
     indir="$PAML_DIR/$og"

@@ -23,18 +23,17 @@ OUT_DIR="${OUT_DIR:-./checkm_141strains}"
 THREADS="${THREADS:-8}"
 E1_LEAF="PB002_S_vesiculosa_L5"
 
-# CheckM expects one sub-directory per genome
+# CheckM collects bins from the top level of this directory only, one file per
+# genome, so the protein FASTAs are gathered flat and named by their leaf label.
 BINS_DIR="${OUT_DIR}/bins"
 mkdir -p "${BINS_DIR}"
 
 for faa in "${REF_FAA_DIR}"/*.faa; do
     strain=$(basename "${faa}" .faa)
-    mkdir -p "${BINS_DIR}/${strain}"
-    cp "${faa}" "${BINS_DIR}/${strain}/${strain}.faa"
+    cp "${faa}" "${BINS_DIR}/${strain}.faa"
 done
 
-mkdir -p "${BINS_DIR}/${E1_LEAF}"
-cp "${E1_FAA}" "${BINS_DIR}/${E1_LEAF}/${E1_LEAF}.faa"
+cp "${E1_FAA}" "${BINS_DIR}/${E1_LEAF}.faa"
 
 CHECKM_OUT="${OUT_DIR}/lineage_wf"
 mkdir -p "${CHECKM_OUT}"
