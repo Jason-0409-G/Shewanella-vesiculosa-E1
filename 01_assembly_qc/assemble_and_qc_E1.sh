@@ -6,8 +6,8 @@
 # Reads were delivered as HiFi CCS by the sequencing provider; Filtlong removes only
 # a few short or low-quality reads.
 #
-# Input   RAW_FQ   PacBio HiFi CCS reads, fastq.gz, deposited under BioProject
-#                  PRJNA1478518 (see Data availability in the manuscript)
+# Input   RAW_FQ   PacBio HiFi CCS reads, fastq.gz; SRA run SRR41024533 under
+#                  BioProject PRJNA1478518 (see Data availability in the manuscript)
 # Output  ${WORK}/filt.fastq.gz                filtered reads
 #         ${WORK}/flye_out/assembly.fasta      one closed circular chromosome, 4,858,980 bp
 #         ${WORK}/checkm2_out/quality_report.tsv   100% complete, 0.51% contamination
