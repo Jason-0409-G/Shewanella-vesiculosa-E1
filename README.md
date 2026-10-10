@@ -15,8 +15,6 @@
 | Raw PacBio HiFi reads | SRR41024533 (PacBio Sequel II, HiFi/CCS) |
 | Krill-gut metatranscriptomes | PRJNA1210771 (previously published) |
 
-Genome and read records are held until publication.
-
 ---
 
 ## Repository layout
