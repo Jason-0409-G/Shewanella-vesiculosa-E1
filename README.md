@@ -1,10 +1,7 @@
 # Krill gut *Shewanella vesiculosa* E1 — analysis code
 
-Code accompanying the manuscript:
-
 > **Krill gut *Shewanella vesiculosa* supports cellobiose utilization with implications for Southern Ocean carbon cycling**
 > Jian Gao, HongZhi Tang, Sheng Du, PengFei Zheng, QunJian Yin, MengYu Liu, FuJian Peng, ChangWei Shao\*, Liang Meng\*, ZhanFei Wei\*
-> Submitted to *Communications Earth & Environment*
 
 ---
 
